@@ -1,0 +1,24 @@
+---
+- name: Create CS:GO server instance configuration directory
+  file:
+    path: '/home/steam/conf/csgo/instance/{{ item.name }}'
+    state: directory
+    owner: steam
+    group: steam
+  loop: '{{ instances }}'
+
+- name: Create CS:GO instance config
+  template:
+    src: service_conf.env
+    dest: '/home/steam/conf/csgo/instance/{{ item.name }}/'
+    dest: /home/steam/conf/csgo/instance/1
+    owner: steam
+    group: steam
+  loop: '{{ instances }}'
+
+- name: Enable CS:GO server instance
+  systemd:
+    name: 'csgo@{{ item.name }}.service'
+    state: started
+    enabled: yes
+  loop: '{{ instances }}'

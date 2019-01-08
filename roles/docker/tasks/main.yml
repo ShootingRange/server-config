@@ -1,0 +1,16 @@
+---
+- name: Install docker
+  apt:
+    name: docker.io
+    state: latest
+
+- name: Enable dockerd service
+  systemd:
+    name: docker.service
+    state: started
+    enabled: yes
+
+- name: Install docker-py for ansible
+  apt:
+    name: python-docker
+    state: latest

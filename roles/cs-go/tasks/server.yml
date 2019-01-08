@@ -1,0 +1,36 @@
+---
+- name: Check if CS:GO is installed
+  stat:
+    path: /home/steam/csgo/csgo
+  register: csgo
+
+- name: Install CS:GO server
+  script: install-csgo.sh
+  when: csgo.stat.exists == False
+  # Note: if app_update failed with state 0x202 it's probably due to not enough available disk space
+
+- name: Update CS:GO server
+  script: update-csgo.sh
+  when: csgo.stat.exists == True
+
+- name: Copy tournament configs
+  copy:
+    force: no
+    src: csgo_esl_serverconfig/
+    dest: /home/steam/csgo/csgo/cfg/
+    owner: steam
+    group: steam
+
+- name: Download cSay addon for CS:GO
+  get_url:
+    url: http://www.esport-tools.net/download/CSay-CSGO.zip
+    dest: /home/steam/CSay-CSGO.zip
+    checksum: sha256:e547ba503571384f47466a3fea6978cf5c3619031fb473169badce99befd44a7
+
+- name: Extract cSay
+  unarchive:
+    src: /home/steam/CSay-CSGO.zip
+    dest: /home/steam/csgo/csgo/
+    owner: steam
+    group: steam
+    remote_src: yes

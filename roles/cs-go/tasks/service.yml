@@ -1,0 +1,9 @@
+---
+- name: Copy CS-GO systemd service to server
+  copy:
+    src: cs-go@.service
+    dest: /etc/systemd/system/csgo@.service
+    owner: root
+    group: root
+    mode: u=rw,go=r
+  # ToDo: signal systemd daemon reload

@@ -1,0 +1,13 @@
+---
+- name: Install unzip
+  apt:
+    name: unzip
+    state: latest
+
+- include: server.yml
+  become: yes
+  become_user: 'steam'
+
+- include: service.yml
+
+- include: instance.yml
