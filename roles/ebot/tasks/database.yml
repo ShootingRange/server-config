@@ -3,30 +3,25 @@
   docker_container:
     name: ebot-mysql
     image: mysql:5
+    purge_networks: yes
     networks:
       - name: ebot
         aliases:
           - database
     env:
       MYSQL_ROOT_PASSWORD: '{{mysql_root_password}}'
-    purge_networks: yes
+    restart_policy: always
   register: mysql
-
-#- name: Install MySQL
-#  apt:
-#    state: present
-#    name: mysql-server
-
-#- name: MySQL service
-#  systemd:
-#    name: mysql.service
-#    state: started
-#    enabled: yes
 
 - name: Ansible mysql library
   apt:
     state: latest
     name: python-pymysql
+
+- name: Wait for MySQL to start
+  wait_for:
+    host: '{{mysql.ansible_facts.docker_container.NetworkSettings.Networks.ebot.IPAddress}}'
+    port: 3306
 
 - name: eBot MySQL database
   mysql_db:
@@ -35,7 +30,6 @@
     login_host: '{{mysql.ansible_facts.docker_container.NetworkSettings.Networks.ebot.IPAddress}}'
     login_password: '{{mysql_root_password}}'
     login_user: 'root'
-    #login_unix_socket: /var/run/mysqld/mysqld.sock
 
 - name: eBot MySQL user
   mysql_user:
@@ -46,5 +40,3 @@
     login_host: '{{mysql.ansible_facts.docker_container.NetworkSettings.Networks.ebot.IPAddress}}'
     login_password: '{{mysql_root_password}}'
     login_user: 'root'
-    #check_implicit_admin: yes
-    #login_unix_socket: /var/run/mysqld/mysqld.sock
