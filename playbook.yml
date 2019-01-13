@@ -21,11 +21,8 @@
     - include_role:
         name: ebot
       vars:
-        mysql_password: 'test'
-        mysql_root_password: 'test'
-        ebot_admin_user: 'admin'
-        ebot_admin_password: 'password'
-        ebot_admin_email: 'ebot@example.com'
-        external_ip: '192.168.122.195'
+        external_ip: '{{ ansible_facts["ens3"].ipv4.address }}' # Replace ens3 with the user facing network interface
+  vars_files:
+    - vars/ebot.yml
   tags:
     - ebot
