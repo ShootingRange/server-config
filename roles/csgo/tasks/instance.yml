@@ -5,20 +5,27 @@
     state: directory
     owner: steam
     group: steam
-  loop: '{{ instances }}'
+  loop: '{{ csgo["servers"][ansible_facts.nodename].instances }}'
 
 - name: Create CS:GO instance config
   template:
     src: service_conf.env
     dest: '/home/steam/conf/csgo/instance/{{ item.name }}/'
-    dest: /home/steam/conf/csgo/instance/1
     owner: steam
     group: steam
-  loop: '{{ instances }}'
+  loop: '{{ csgo["servers"][ansible_facts.nodename].instances }}'
+
+- name: Create CS:GO instance config
+  template:
+    src: instance.cfg
+    dest: '/home/steam/csgo/csgo/cfg/instance_{{ item.name }}.cfg'
+    owner: steam
+    group: steam
+  loop: '{{ csgo["servers"][ansible_facts.nodename].instances }}'
 
 - name: Enable CS:GO server instance
   systemd:
     name: 'csgo@{{ item.name }}.service'
     state: started
     enabled: yes
-  loop: '{{ instances }}'
+  loop: '{{ csgo["servers"][ansible_facts.nodename].instances }}'

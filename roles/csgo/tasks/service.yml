@@ -1,0 +1,20 @@
+---
+- name: Copy CS:GO server script
+  copy:
+    src: run-csgo.sh
+    dest: /home/steam/run-csgo.sh
+    owner: steam
+    group: steam
+    mode: ugo=rx
+
+- name: Copy CS:GO systemd service to server
+  copy:
+    src: csgo@.service
+    dest: /etc/systemd/system/csgo@.service
+    owner: root
+    group: root
+    mode: u=rw,go=r
+
+- name: Reload systemd
+  systemd:
+    daemon_reload: yes

@@ -6,12 +6,9 @@
     - include_role:
         name: steamcmd
     - include_role:
-        name: cs-go
-      vars:
-        instances:
-          - name: '1'
-            gslt: '3A3B0E2FC463309618A1942B356316C5'
-            rcon_password: 'password'
+        name: csgo
+  vars_files:
+    - vars/csgo-instances.yml
   tags:
     - csgo
 
