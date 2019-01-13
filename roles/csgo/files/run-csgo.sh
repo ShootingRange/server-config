@@ -5,4 +5,5 @@
   -usercon \
   -port $SERVER_PORT \
   +sv_setsteamaccount "$GSLT" \
+  +mapgroup mg_active \
   +exec "instance_${1}.cfg"
