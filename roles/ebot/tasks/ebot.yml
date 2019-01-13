@@ -2,7 +2,8 @@
 - name: eBot container
   docker_container:
     name: ebot
-    image: hsfactory/ebot
+    image: kaganus/ebot
+    purge_networks: yes
     networks:
       - name: ebot
         aliases:
@@ -27,12 +28,13 @@
       DELAY_READY: 'false'
       NODE_STARTUP_METHOD: 'node'
       USE_DELAY_END_RECORD: 'true'
-    purge_networks: yes
+    restart_policy: always
 
 - name: eBot web interface container
   docker_container:
     name: ebot-web
-    image: hsfactory/ebotweb
+    image: kaganus/ebotweb
+    purge_networks: yes
     networks:
       - name: ebot
     published_ports: '0.0.0.0:8080:80'
@@ -49,4 +51,4 @@
       MYSQL_PASS: '{{mysql_password}}'
       DEMO_DOWNLOAD: 'true'
       DEFAULT_RULES: 'esl5on5'
-    purge_networks: yes
+    restart_policy: always
