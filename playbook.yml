@@ -33,6 +33,8 @@
   tasks:
     - include_role:
         name: users
+    - include_role:
+        name: sudo
   vars_files:
     - vars/users.yml
   tags:

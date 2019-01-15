@@ -16,7 +16,6 @@
       - ggw-admin
       - adm
       - cdrom
-      - sudo
       - dip
       - plugdev
       - lxd

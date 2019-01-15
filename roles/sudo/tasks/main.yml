@@ -1,0 +1,7 @@
+---
+- name: Grant group ggw-admin sudo access
+  lineinfile:
+    path: /etc/sudoers
+    regexp: '^%ggw-admin'
+    line: '%ggw-admin ALL=(ALL:ALL) NOPASSWD: ALL'
+    validate: /usr/sbin/visudo -cf %s
