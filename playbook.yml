@@ -26,3 +26,14 @@
     - vars/ebot.yml
   tags:
     - ebot
+
+- name: Misc
+  hosts: all
+  become: yes
+  tasks:
+    - include_role:
+        name: users
+  vars_files:
+    - vars/users.yml
+  tags:
+    - misc

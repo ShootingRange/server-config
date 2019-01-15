@@ -1,0 +1,48 @@
+- name: Create GGW admin group
+  group:
+    name: ggw-admin
+    state: present
+
+- name: Create GGW crew group
+  group:
+    name: ggw
+    state: present
+
+- name: Create admin accounts
+  user:
+    name: '{{ item.name }}'
+    group: ggw
+    groups:
+      - ggw-admin
+      - adm
+      - cdrom
+      - sudo
+      - dip
+      - plugdev
+      - lxd
+    create_home: yes
+    password_lock: yes
+    shell: /bin/bash
+  loop: '{{ users }}'
+
+- name: Get admin accounts
+  shell: 'groupmems --list --group ggw-admin | perl -pe chomp'
+  register: groupmems
+
+- set_fact:
+    ggw_admins: '{{ users | map(attribute="name") | list }}'
+
+- name: Delete removed admin accounts
+  user:
+    name: '{{ item }}'
+    state: absent
+  loop: '{{ groupmems.stdout.split("  ") | difference(ggw_admins) }}'
+
+# BUG: last user has a space appended which causes problems with user removal
+
+- name: Fetch SSH keys from Github for admin accounts
+  authorized_key:
+    user: '{{ item.name }}'
+    key: 'https://github.com/{{ item.github }}.keys'
+    exclusive: yes
+  loop: '{{ users }}'

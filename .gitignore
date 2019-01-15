@@ -1,3 +1,4 @@
 *.retry
 hosts
 vars/csgo-instances.yml
+vars/users.yml
