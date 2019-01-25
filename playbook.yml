@@ -49,16 +49,3 @@
     - vars/ebot.yml
   tags:
     - ebot
-
-- name: swboot
-  hosts: swboot
-  become: yes
-  tasks:
-    - include_role:
-        name: docker
-    - include_role:
-        name: swboot
-  vars_files:
-    - vars/swboot.yml
-  tags:
-    - swboot
