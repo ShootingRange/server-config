@@ -16,7 +16,7 @@
 - name: Copy tournament configs
   copy:
     force: no
-    src: csgo_esl_serverconfig/
+    src: confs/
     dest: /home/steam/csgo/csgo/cfg/
     owner: steam
     group: steam

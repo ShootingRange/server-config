@@ -1,0 +1,11 @@
+---
+- name: Counter-Strike Global Offensive server
+  hosts: csgo
+  become: yes
+  tasks:
+    - include_role:
+        name: network
+    - name: netplan apply
+      command: netplan apply
+  vars_files:
+    - vars/ips.yml

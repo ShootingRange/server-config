@@ -1,0 +1,21 @@
+---
+- name: remove eBot
+  hosts: ebot
+  become: yes
+  tasks:
+    - name: remove ebot
+      docker_container:
+        name: ebot
+        state: absent
+    - name: remove ebot web
+      docker_container:
+        name: ebot-web
+        state: absent
+    - name: remove ebot db
+      docker_container:
+        name: ebot-mysql
+        state: absent
+    - name: remove docker
+      apt:
+       name: docker.io
+       state: absent

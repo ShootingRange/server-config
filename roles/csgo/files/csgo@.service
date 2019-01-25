@@ -3,9 +3,10 @@ Description=Counter-Strike: Global Offensive dedicated server [%i]
 After=network.target
 
 [Service]
-type=simple
+Type=simple
 EnvironmentFile=/home/steam/conf/csgo/instance/%i/service_conf.env
 ExecStart=/home/steam/run-csgo.sh %i
+WorkingDirectory=/home/steam/csgo
 User=steam
 Group=steam
 

@@ -1,0 +1,31 @@
+---
+- name: Disable cloud init network configuration
+  copy:
+    src: 99-disable-network-config.cfg
+    dest: /etc/cloud/cloud.cfg.d/99-disable-network-config.cfg
+
+- name: Copy netplan config
+  template:
+    src: 00-ggw.yaml
+    dest: /etc/netplan/00-ggw.yaml
+
+- name: Remove cloud init netplan config
+  file:
+    path: /etc/netplan/50-cloud-init.yaml
+    state: absent
+
+- name: Stat systemd /etc/resolv.conf 
+  stat:
+    path: /etc/resolv.conf
+  register: resolv
+
+- name: Remove systemd /etc/resolv.conf
+  file:
+    path: /etc/resolv.conf
+    state: absent
+  when: resolv.stat.islnk
+
+- name: Copy resolv.conf to server
+  copy:
+    src: resolv.conf
+    dest: /etc/resolv.conf

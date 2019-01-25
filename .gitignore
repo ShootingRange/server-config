@@ -2,3 +2,4 @@
 hosts
 vars/csgo-instances.yml
 vars/users.yml
+ansible.log

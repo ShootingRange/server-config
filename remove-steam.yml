@@ -1,0 +1,12 @@
+---
+- name: Counter-Strike Global Offensive server
+  hosts: csgo
+  become: yes
+  tasks:
+    - user:
+        name: steam
+        state: absent
+        remove: yes
+    - file:
+        path: /home/steam
+        state: absent

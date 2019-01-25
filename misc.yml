@@ -1,0 +1,11 @@
+---
+- name: Misc
+  hosts: all
+  become: yes
+  tasks:
+    - include_role:
+        name: sudo
+    - include_role:
+        name: users
+  vars_files:
+    - vars/users.yml

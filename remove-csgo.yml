@@ -1,0 +1,13 @@
+---
+- name: Remove csgo services
+  hosts: csgo
+  become: yes
+  tasks:
+    - name: remove CS:GO server instance
+      systemd:
+        name: 'csgo@{{ item.name }}.service'
+        state: stopped
+        enabled: no
+      loop: '{{ csgo["servers"][ansible_facts.nodename].instances }}'
+  vars_files:
+    - vars/csgo-instances.yml

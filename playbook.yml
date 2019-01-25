@@ -1,4 +1,27 @@
 ---
+- name: Install python
+  hosts: all
+  become: yes
+  gather_facts: no
+  tasks:
+    - name: install python2 for ansible
+      raw: test -e /usr/bin/python || (apt -y update && apt install -y python-minimal)
+  tags:
+    - setup
+
+- name: Misc
+  hosts: all
+  become: yes
+  tasks:
+    - include_role:
+        name: sudo
+    - include_role:
+        name: users
+  vars_files:
+    - vars/users.yml
+  tags:
+    - misc
+
 - name: Counter-Strike Global Offensive server
   hosts: csgo
   become: yes
@@ -21,21 +44,21 @@
     - include_role:
         name: ebot
       vars:
-        external_ip: '{{ ansible_facts["ens3"].ipv4.address }}' # Replace ens3 with the user facing network interface
+        external_ip: '{{ ansible_facts["eno2"].ipv4.address }}' # Replace ens3 with the user facing network interface
   vars_files:
     - vars/ebot.yml
   tags:
     - ebot
 
-- name: Misc
-  hosts: all
+- name: swboot
+  hosts: swboot
   become: yes
   tasks:
     - include_role:
-        name: users
+        name: docker
     - include_role:
-        name: sudo
+        name: swboot
   vars_files:
-    - vars/users.yml
+    - vars/swboot.yml
   tags:
-    - misc
+    - swboot

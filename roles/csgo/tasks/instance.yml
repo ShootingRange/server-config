@@ -26,6 +26,6 @@
 - name: Enable CS:GO server instance
   systemd:
     name: 'csgo@{{ item.name }}.service'
-    state: started
+    state: restarted
     enabled: yes
   loop: '{{ csgo["servers"][ansible_facts.nodename].instances }}'

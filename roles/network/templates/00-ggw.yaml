@@ -1,0 +1,9 @@
+network:
+  ethernets:
+    {{ ips[ansible_facts.nodename].interface }}:
+      addresses: [{{ ips[ansible_facts.nodename].ip }}]
+      dhcp4: false
+      gateway4: {{ ips[ansible_facts.nodename].gateway }}
+      nameservers:
+        addresses: [1.1.1.1]
+  version: 2

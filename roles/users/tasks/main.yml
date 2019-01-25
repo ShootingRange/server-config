@@ -8,9 +8,9 @@
     name: ggw
     state: present
 
-- name: Create admin accounts
+- name: Create ggw admin account
   user:
-    name: '{{ item.name }}'
+    name: ggw
     group: ggw
     groups:
       - ggw-admin
@@ -20,28 +20,48 @@
       - plugdev
       - lxd
     create_home: yes
-    password_lock: yes
     shell: /bin/bash
-  loop: '{{ users }}'
 
-- name: Get admin accounts
-  shell: 'groupmems --list --group ggw-admin | perl -pe chomp'
-  register: groupmems
+- name: Fetch SSH keys from Github for ggw admin accounts
+  authorized_key:
+    user: ggw
+    key: https://github.com/jenrik.keys
+    exclusive: no
 
-- set_fact:
-    ggw_admins: '{{ users | map(attribute="name") | list }}'
+#- name: Create admin accounts
+#  user:
+#    name: '{{ item.name }}'
+#    group: ggw
+#    groups:
+#      - ggw-admin
+#      - adm
+#      - cdrom
+#      - dip
+#      - plugdev
+#      - lxd
+#    create_home: yes
+#    password_lock: yes
+#    shell: /bin/bash
+#  loop: '{{ users }}'
 
-- name: Delete removed admin accounts
-  user:
-    name: '{{ item }}'
-    state: absent
-  loop: '{{ groupmems.stdout.split("  ") | difference(ggw_admins) }}'
+#- name: Get admin accounts
+#  shell: 'groupmems --list --group ggw-admin | perl -pe chomp'
+#  register: groupmems
+
+#- set_fact:
+#    ggw_admins: '{{ users | map(attribute="name") | list }}'
+
+#- name: Delete removed admin accounts
+#  user:
+#    name: '{{ item }}'
+#    state: absent
+#  loop: '{{ groupmems.stdout.split("  ") | difference(ggw_admins) }}'
 
 # BUG: last user has a space appended which causes problems with user removal
 
-- name: Fetch SSH keys from Github for admin accounts
-  authorized_key:
-    user: '{{ item.name }}'
-    key: 'https://github.com/{{ item.github }}.keys'
-    exclusive: yes
-  loop: '{{ users }}'
+#- name: Fetch SSH keys from Github for admin accounts
+#  authorized_key:
+#    user: '{{ item.name }}'
+#    key: 'https://github.com/{{ item.github }}.keys'
+#    exclusive: yes
+#  loop: '{{ users }}'
