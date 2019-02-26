@@ -1,5 +1,0 @@
-mysql_password: 'test'
-mysql_root_password: 'test'
-ebot_admin_user: 'admin'
-ebot_admin_password: 'password'
-ebot_admin_email: 'ebot@example.com'
