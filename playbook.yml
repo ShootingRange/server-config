@@ -28,6 +28,8 @@
   tasks:
     - include_role:
         name: steamcmd
+      vars:
+        steamcache: yes
     - include_role:
         name: csgo
   vars_files:
@@ -44,7 +46,7 @@
     - include_role:
         name: ebot
       vars:
-        external_ip: '{{ ansible_facts["eno2"].ipv4.address }}' # Replace ens3 with the user facing network interface
+        external_ip: '{{ ansible_facts["enp1s0"].ipv4.address }}' # Replace ens3 with the user facing network interface
   vars_files:
     - vars/ebot.yml
   tags:
