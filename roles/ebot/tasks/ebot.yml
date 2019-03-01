@@ -40,7 +40,7 @@
     published_ports: '0.0.0.0:8080:80'
     env:
       EBOT_IP: '{{external_ip}}'
-      EBOT_PORT: 12360
+      EBOT_PORT: '12360'
       EBOT_ADMIN_USER: '{{ebot_admin_user}}'
       EBOT_ADMIN_PASS: '{{ebot_admin_password}}'
       EBOT_ADMIN_MAIL: '{{ebot_admin_email}}'
