@@ -14,3 +14,7 @@
   apt:
     name: python-docker
     state: latest
+
+- name: CS:GO manager docker network
+  docker_network:
+    name: csgo-manager

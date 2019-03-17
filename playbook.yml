@@ -19,6 +19,7 @@
         name: users
   vars_files:
     - vars/users.yml
+    - vars/misc.yml
   tags:
     - misc
 
@@ -34,20 +35,27 @@
         name: csgo
   vars_files:
     - vars/csgo-instances.yml
+    - vars/misc.yml
   tags:
     - csgo
 
-- name: eBot
-  hosts: ebot
+- name: Manager
+  hosts: manager
   become: yes
   tasks:
     - include_role:
         name: docker
     - include_role:
+        name: database
+    - include_role:
         name: ebot
       vars:
-        external_ip: '{{ ansible_facts["enp1s0"].ipv4.address }}' # Replace ens3 with the user facing network interface
+        external_ip: '{{ ansible_facts[ips[ansible_facts.nodename].interface].ipv4.address }}'
+    - include_role:
+        name: get5
   vars_files:
     - vars/ebot.yml
+    - vars/ips.yml
+    - vars/misc.yml
   tags:
-    - ebot
+    - manager

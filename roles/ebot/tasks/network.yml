@@ -1,4 +1,0 @@
----
-- name: eBot docker network
-  docker_network:
-    name: ebot

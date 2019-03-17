@@ -1,0 +1,10 @@
+---
+- name: stop eBot container
+  docker_container:
+    name: ebot
+    state: absent
+
+- name: stop eBot web interface container
+  docker_container:
+    name: ebot-web
+    state: absent

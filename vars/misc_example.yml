@@ -1,0 +1,2 @@
+csgo_manager: 'get5' # Either ebot or get5
+steam_api_key: '' # Used for get5 web interface

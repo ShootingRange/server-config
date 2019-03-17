@@ -1,0 +1,24 @@
+---
+- name: Download cSay addon for CS:GO
+  get_url:
+    url: http://www.esport-tools.net/download/CSay-CSGO.zip
+    dest: /home/steam/CSay-CSGO.zip
+    checksum: sha256:e547ba503571384f47466a3fea6978cf5c3619031fb473169badce99befd44a7
+  when: csgo_manager == 'ebot'
+
+- name: Extract cSay
+  unarchive:
+    src: /home/steam/CSay-CSGO.zip
+    dest: /home/steam/csgo/csgo/
+    owner: steam
+    group: steam
+    mode: o=rwx,go=rx
+    remote_src: yes
+  when: csgo_manager == 'ebot'
+
+- name: Remove cSay
+  file:
+    file: '{{ item }}'
+    state: absent
+  with_fileglob: '/home/steam/csgo/csgo/addons/cSay*'
+  when: csgo_manager != 'ebot'

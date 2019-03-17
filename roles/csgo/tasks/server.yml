@@ -21,19 +21,9 @@
     owner: steam
     group: steam
 
-- name: Download cSay addon for CS:GO
-  get_url:
-    url: http://www.esport-tools.net/download/CSay-CSGO.zip
-    dest: /home/steam/CSay-CSGO.zip
-    checksum: sha256:e547ba503571384f47466a3fea6978cf5c3619031fb473169badce99befd44a7
+- include: ebot.yml
 
-- name: Extract cSay
-  unarchive:
-    src: /home/steam/CSay-CSGO.zip
-    dest: /home/steam/csgo/csgo/
-    owner: steam
-    group: steam
-    remote_src: yes
+- include: get5.yml
 
 - name: Generate autoexec.cfg
   template:

@@ -5,7 +5,7 @@
     image: kaganus/ebot
     purge_networks: yes
     networks:
-      - name: ebot
+      - name: csgo-manager
         aliases:
           - ebot
     published_ports:
@@ -36,7 +36,7 @@
     image: kaganus/ebotweb
     purge_networks: yes
     networks:
-      - name: ebot
+      - name: csgo-manager
     published_ports: '0.0.0.0:8080:80'
     env:
       EBOT_IP: '{{external_ip}}'

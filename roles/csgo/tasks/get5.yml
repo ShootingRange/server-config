@@ -1,0 +1,126 @@
+---
+- name: Download get5
+  get_url:
+    url: 'https://github.com/splewis/get5/releases/download/0.7.1/get5_0.7.1.zip'
+    dest: /home/steam/get5_0.7.1.zip
+    checksum: sha256:0a3794cf8240d0b773f788095d37b1328e61bf93964871c34391c24efcb20e1b
+  when: csgo_manager == 'get5'
+
+- name: Download sourcemod
+  get_url:
+    url: 'https://sm.alliedmods.net/smdrop/1.9/sourcemod-1.9.0-git6275-linux.tar.gz'
+    dest: /home/steam/
+    checksum: sha256:d93043ad801692314a8037f8e7a8d41f218da2af3fdb6a19370d9256a099671f
+  when: csgo_manager == 'get5'
+
+- name: Download metamod
+  get_url:
+    url: 'https://mms.alliedmods.net/mmsdrop/1.10/mmsource-1.10.7-git968-linux.tar.gz'
+    dest: /home/steam/
+    checksum: sha256:95c9433a64b42d969b00b01838f472a7822eadd17270aa9fdc92d82f2f9fbe56
+  when: csgo_manager == 'get5'
+
+- name: Download steamworks
+  get_url:
+    url: 'https://users.alliedmods.net/~kyles/builds/SteamWorks/SteamWorks-git131-linux.tar.gz'
+    dest: /home/steam/
+    checksum: sha256:7d9e08c83bb96b1c28b199e5ec986adf22f4ab25039f1a42bcd0c7dd0012f3b7
+  when: csgo_manager == 'get5'
+
+- file:
+    path: /home/steam/csgo/csgo/addons
+    mode: u=rwx,go=rx
+    recurse: yes
+
+- file:
+    path: /home/steam/csgo/csgo/cfg
+    mode: u=rwx,go=rx
+    recurse: yes
+
+- name: Extract get5
+  unarchive:
+    src: /home/steam/get5_0.7.1.zip
+    dest: /home/steam/csgo/csgo/
+    owner: steam
+    group: steam
+    mode: u=rwx,go=rx
+    remote_src: yes
+    exclude:
+      - 'LICENSE'
+      - 'README.md'
+  when: csgo_manager == 'get5'
+
+- name: Extract sourcemod
+  unarchive:
+    src: /home/steam/sourcemod-1.9.0-git6275-linux.tar.gz
+    dest: /home/steam/csgo/csgo/
+    owner: steam
+    group: steam
+    mode: u=rwx,go=rx
+    remote_src: yes
+    exclude:
+      - 'LICENSE'
+      - 'README.md'
+  when: csgo_manager == 'get5'
+
+- name: Extract metamod
+  unarchive:
+    src: /home/steam/mmsource-1.10.7-git968-linux.tar.gz
+    dest: /home/steam/csgo/csgo/
+    owner: steam
+    group: steam
+    mode: u=rwx,go=rx
+    remote_src: yes
+    exclude:
+      - 'LICENSE'
+      - 'README.md'
+  when: csgo_manager == 'get5'
+
+- name: Extract steamworks
+  unarchive:
+    src: /home/steam/SteamWorks-git131-linux.tar.gz
+    dest: /home/steam/csgo/csgo/
+    owner: steam
+    group: steam
+    mode: u=rwx,go=rx
+    remote_src: yes
+    exclude:
+      - 'LICENSE'
+      - 'README.md'
+  when: csgo_manager == 'get5'
+
+- name: Download smjansson
+  get_url:
+    url: 'https://github.com/thraaawn/SMJansson/raw/master/bin/smjansson.ext.so'
+    dest: /home/steam/csgo/csgo/addons/sourcemod/extensions/
+    checksum: sha256:58cd68189c8b95e9f59ac9cfa2030db809383b4be321ef1f91800f0e1b21c7f6
+    mode: u=rwx,go=rx
+  when: csgo_manager == 'get5'
+
+- name: enable get5 apistats 
+  copy:
+    src: /home/steam/csgo/csgo/addons/sourcemod/plugins/disabled/get5_apistats.smx
+    dest: /home/steam/csgo/csgo/addons/sourcemod/plugins/get5_apistats.smx
+    remote_src: yes
+
+- file:
+    path: /home/steam/csgo/csgo/addons
+    mode: u=rwx,go=rx
+    recurse: yes
+
+- file:
+    path: /home/steam/csgo/csgo/cfg
+    mode: u=rwx,go=rx
+    recurse: yes
+
+- name: Remove get5 - config
+  file:
+    path: '/home/steam/csgo/csgo/cfg/get5'
+    state: absent
+  when: csgo_manager != 'get5'
+
+- name: Remove get5 - addons
+  file:
+    path: '/home/steam/csgo/csgo/cfg/addons/sourcemod'
+    state: absent
+  when: csgo_manager != 'get5'

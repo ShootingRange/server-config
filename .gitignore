@@ -1,7 +1,9 @@
 *.retry
-hosts
+/hosts*
 vars/csgo-instances.yml
 vars/users.yml
 vars/ebot.yml
+vars/ips.yml
+vars/misc.yml
 ansible.log
 hosts*

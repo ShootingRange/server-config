@@ -1,4 +1,5 @@
 ---
-- include: network.yml
-- include: database.yml
 - include: ebot.yml
+  when: csgo_manager == 'ebot'
+- include: remove.yml
+  when: csgo_manager != 'ebot'

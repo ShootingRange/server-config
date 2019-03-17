@@ -1,0 +1,5 @@
+---
+- include: get5.yml
+  when: csgo_manager == 'get5'
+- include: remove.yml
+  when: csgo_manager != 'get5'

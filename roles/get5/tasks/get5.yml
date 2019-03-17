@@ -1,0 +1,44 @@
+---
+- name: Docker build directory
+  tempfile:
+    state: directory
+  register: get5_docker
+
+- name: Copy get5 web config to server
+  template:
+    src: prod_config.py
+    dest: '{{ get5_docker.path }}/prod_config.py'
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Copy get5 web entry to server
+  copy:
+    src: '{{ item }}'
+    dest: '{{ get5_docker.path }}/{{ item }}'
+    owner: root
+    group: root
+    mode: 0644
+  with_items:
+    - 'entry.sh'
+    - 'dockerfile'
+
+- name: Build get5 web docker image
+  docker_image:
+    dockerfile: dockerfile
+    state: present
+    name: get5-web
+    path: '{{ get5_docker.path }}'
+    force: yes
+
+- name: get5 web interface container
+  docker_container:
+    image: get5-web
+    name: get5-web
+    purge_networks: yes
+    networks:
+      - name: csgo-manager
+    published_ports: '0.0.0.0:5000:5000'
+    env:
+      FLASK_SECRET: 'asdf1234'
+    restart_policy: unless-stopped

@@ -1,0 +1,5 @@
+---
+- name: stop get5 web interface container
+  docker_container:
+    name: get5-web
+    state: absent
