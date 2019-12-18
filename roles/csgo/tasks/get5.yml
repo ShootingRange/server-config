@@ -8,13 +8,13 @@
 
 - name: Download sourcemod
   get_url:
-    url: 'https://sm.alliedmods.net/smdrop/1.9/sourcemod-1.9.0-git6275-linux.tar.gz'
+    url: 'https://sm.alliedmods.net/smdrop/1.10/sourcemod-1.10.0-git6454-linux.tar.gz'
     dest: /home/steam/
   when: csgo_manager == 'get5'
 
 - name: Download metamod
   get_url:
-    url: 'https://mms.alliedmods.net/mmsdrop/1.10/mmsource-1.10.7-git968-linux.tar.gz'
+    url: 'https://mms.alliedmods.net/mmsdrop/1.10/mmsource-1.10.7-git971-linux.tar.gz'
     dest: /home/steam/
   when: csgo_manager == 'get5'
 
@@ -50,7 +50,7 @@
 
 - name: Extract sourcemod
   unarchive:
-    src: /home/steam/sourcemod-1.9.0-git6275-linux.tar.gz
+    src: /home/steam/sourcemod-1.10.0-git6454-linux.tar.gz
     dest: /home/steam/csgo/csgo/
     owner: steam
     group: steam
@@ -63,7 +63,7 @@
 
 - name: Extract metamod
   unarchive:
-    src: /home/steam/mmsource-1.10.7-git968-linux.tar.gz
+    src: /home/steam/mmsource-1.10.7-git971-linux.tar.gz
     dest: /home/steam/csgo/csgo/
     owner: steam
     group: steam
