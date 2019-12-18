@@ -113,6 +113,22 @@
     mode: u=rwx,go=rx
     recurse: yes
 
+- name: Set get5 config
+  copy:
+    src: get5.cfg
+    dest: /home/steam/csgo/csgo/cfg/sourcemod/get5.cfg
+    owner: steam
+    group: steam
+    mode: u=rwx,go=rx
+
+- name: Copy match files
+  copy:
+    src: "match"
+    dest: "/home/steam/csgo/csgo/match"
+    owner: steam
+    group: steam
+    mode: u=rwx,go=rx
+
 - name: Remove get5 - config
   file:
     path: '/home/steam/csgo/csgo/cfg/get5'
