@@ -15,7 +15,3 @@
       docker_container:
         name: ebot-mysql
         state: absent
-    - name: remove docker
-      apt:
-       name: docker.io
-       state: absent
