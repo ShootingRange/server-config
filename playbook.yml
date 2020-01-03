@@ -27,15 +27,23 @@
   hosts: csgo
   become: yes
   tasks:
+    - include_vars:
+        file: vars/logging.yml
+        name: logging
+    - include_vars:
+        file: vars/csgo-instances.yml
+        name: csgo
+    - include_vars:
+        file: vars/misc.yml
+    - fail:
+        msg: "Server doesn't have a instance configuration"
+      when: 'ansible_facts.nodename not in csgo["servers"]'
     - include_role:
         name: steamcmd
       vars:
-        steamcache: yes
+        steamcache: false
     - include_role:
         name: csgo
-  vars_files:
-    - vars/csgo-instances.yml
-    - vars/misc.yml
   tags:
     - csgo
 

@@ -1,26 +1,26 @@
-csgo:
-  rcon_password: 'password'
-  server_password: 'password'
-  servers:
-    server-hostname-1:
-      instances:
-        - name: server-1-1
-          gslt: '0123456789ABCDEF0123456789ABCDEF'
-          port: 27015
-        - name: server-1-1
-          gslt: '0123456789ABCDEF0123456789ABCDEF'
-          port: 27016
-        - name: server-1-1
-          gslt: '0123456789ABCDEF0123456789ABCDEF'
-          port: 27017
-    server-hostname-2:
-      instances:
-        - name: server-2-1
-          gslt: '0123456789ABCDEF0123456789ABCDEF'
-          port: 27015
-        - name: server-2-2
-          gslt: '0123456789ABCDEF0123456789ABCDEF'
-          port: 27016
-        - name: server-2-3
-          gslt: '0123456789ABCDEF0123456789ABCDEF'
-          port: 27017
+rcon_password: 'password'
+server_password: 'password'
+gotv_password: 'password'
+servers:
+  server-hostname-1:
+    instances:
+      - name: server-1-1
+        gslt: '0123456789ABCDEF0123456789ABCDEF'
+        port: 27015
+      - name: server-1-1
+        gslt: '0123456789ABCDEF0123456789ABCDEF'
+        port: 27016
+      - name: server-1-1
+        gslt: '0123456789ABCDEF0123456789ABCDEF'
+        port: 27017
+  server-hostname-2:
+    instances:
+      - name: server-2-1
+        gslt: '0123456789ABCDEF0123456789ABCDEF'
+        port: 27015
+      - name: server-2-2
+        gslt: '0123456789ABCDEF0123456789ABCDEF'
+        port: 27016
+      - name: server-2-3
+        gslt: '0123456789ABCDEF0123456789ABCDEF'
+        port: 27017
