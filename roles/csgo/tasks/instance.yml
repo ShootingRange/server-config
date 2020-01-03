@@ -28,7 +28,7 @@
     name: 'csgo@{{ item.name }}.service'
     state: restarted
     enabled: yes
-  when: "{{ item.active }}"
+  when: "item.active"
   loop: '{{ csgo["servers"][ansible_facts.nodename].instances }}'
 
 - name: Disable CS:GO server instance
@@ -36,5 +36,5 @@
     name: 'csgo@{{ item.name }}.service'
     state: stopped
     enabled: yes
-  when: "{{ item.active == false }}"
+  when: "item.active == false"
   loop: '{{ csgo["servers"][ansible_facts.nodename].instances }}'
