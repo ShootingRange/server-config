@@ -5,8 +5,6 @@
     state: latest
 
 - include: server.yml
-  become: yes
-  become_user: 'steam'
 
 - include: service.yml
 

@@ -14,11 +14,15 @@
 - name: Install CS:GO server
   script: install-csgo.sh
   when: csgostat.stat.exists == False
+  become: yes
+  become_user: steam
   # Note: if app_update failed with state 0x202 it's probably due to not enough available disk space
 
 - name: Update CS:GO server
   script: update-csgo.sh
   when: csgostat.stat.exists == True
+  become: yes
+  become_user: steam
 
 - name: Copy tournament configs
   copy:
