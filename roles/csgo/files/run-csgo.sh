@@ -12,7 +12,7 @@ exec /home/steam/csgo/srcds_linux \
   +sv_setsteamaccount "$GSLT" \
   +tv_port "$GOTV_PORT" \
   +tv_password "$GOTV_PASSWORD" \
-  +tv_relaypassword "${GOTV_PASSWORD}_ggwrelay" \
+  +tv_relaypassword "${GOTV_RELAY_PASSWORD}" \
   +rcon_password "$RCON_PASSWORD" \
   +mapgroup mg_active \
   +map de_dust2 \

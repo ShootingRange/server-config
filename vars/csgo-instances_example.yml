@@ -1,6 +1,7 @@
 rcon_password: 'password'
 server_password: 'password'
 gotv_password: 'password'
+gotv_relay_password: 'password'
 servers:
   server-hostname-1:
     instances:
