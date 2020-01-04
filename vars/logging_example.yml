@@ -1,0 +1,12 @@
+simple: [] # UDP logging
+#  - address: 192.168.0.100
+#    port: 1234
+ex: [] # UDP logging, with token (see token_secret)
+#  - address: 192.168.0.100
+#    port: 1234
+ts: [] # UDP logging, with checksum token (see token_secret)
+#  - address: 192.168.0.100
+#    port: 1234
+http: [] # HTTP logging
+#  - "http://192.168.0.100:1234"
+token_secret: "hunter2" # token sent with log entries when using ex or ts
