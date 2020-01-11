@@ -25,10 +25,11 @@
 
 - name: Build get5 web docker image
   docker_image:
-    dockerfile: dockerfile
+    build:
+      dockerfile: dockerfile
+      path: '{{ get5_docker.path }}'
     state: present
     name: get5-web
-    path: '{{ get5_docker.path }}'
     force: yes
 
 - name: get5 web interface container
