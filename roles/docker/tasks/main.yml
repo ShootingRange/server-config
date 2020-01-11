@@ -12,7 +12,7 @@
 
 - name: Install docker-py for ansible
   apt:
-    name: python-docker
+    name: python3-docker
     state: latest
 
 - name: CS:GO manager docker network
