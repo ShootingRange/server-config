@@ -100,6 +100,14 @@
     src: /home/steam/csgo/csgo/addons/sourcemod/plugins/disabled/get5_apistats.smx
     dest: /home/steam/csgo/csgo/addons/sourcemod/plugins/get5_apistats.smx
     remote_src: yes
+  when: csgo_manager == 'get5'
+
+- name: enable get5 mysqlstats
+  copy:
+    src: /home/steam/csgo/csgo/addons/sourcemod/plugins/disabled/get5_mysqlstats.smx
+    dest: /home/steam/csgo/csgo/addons/sourcemod/plugins/get5_mysqlstats.smx
+    remote_src: yes
+  when: csgo_manager == 'get5'
 
 - file:
     path: /home/steam/csgo/csgo/addons
@@ -118,6 +126,16 @@
     owner: steam
     group: steam
     mode: u=rwx,go=rx
+  when: csgo_manager == 'get5'
+
+- name: Copy database config for get5 mysqlstats
+  copy:
+    src: databases.cfg
+    dest: /home/steam/csgo/csgo/addons/sourcemod/config/databases.cfg
+    owner: steam
+    group: steam
+    mode: u=rwx,go=rx
+  when: csgo_manager == 'get5'
 
 - name: Copy match files
   copy:
