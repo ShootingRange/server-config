@@ -10,9 +10,14 @@
     state: started
     enabled: yes
 
-- name: Install docker-py for ansible
+- name: Install docker-py for ansible (python3)
   apt:
     name: python3-docker
+    state: latest
+
+- name: Install docker-py for ansible (python2)
+  apt:
+    name: python-docker
     state: latest
 
 - name: CS:GO manager docker network

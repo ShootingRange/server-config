@@ -131,7 +131,7 @@
 - name: Copy database config for get5 mysqlstats
   copy:
     src: databases.cfg
-    dest: /home/steam/csgo/csgo/addons/sourcemod/config/databases.cfg
+    dest: /home/steam/csgo/csgo/addons/sourcemod/configs/databases.cfg
     owner: steam
     group: steam
     mode: u=rwx,go=rx

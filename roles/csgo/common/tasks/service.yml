@@ -1,12 +1,4 @@
 ---
-- name: Copy CS:GO server script
-  copy:
-    src: run-csgo.sh
-    dest: /home/steam/run-csgo.sh
-    owner: steam
-    group: steam
-    mode: ugo=rx
-
 - name: Copy CS:GO systemd service to server
   copy:
     src: csgo@.service

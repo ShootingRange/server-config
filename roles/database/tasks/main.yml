@@ -13,7 +13,12 @@
     restart_policy: always
   register: mysql
 
-- name: Ansible mysql library
+- name: Ansible mysql library (python3)
+  apt:
+    state: latest
+    name: python3-pymysql
+
+- name: Ansible mysql library (python2)
   apt:
     state: latest
     name: python-pymysql
@@ -52,9 +57,39 @@
 - name: get5 MySQL user
   mysql_user:
     name: get5
-    password: '{{mysql_password}}'
+    password: '{{ get5.database_password }}'
     host: '%'
     priv: 'get5.*:ALL'
     login_host: '{{mysql.ansible_facts.docker_container.NetworkSettings.Networks["csgo-manager"].IPAddress}}'
     login_password: '{{mysql_root_password}}'
     login_user: 'root'
+
+- name: get5-mysqlstats MySQL database
+  mysql_db:
+    name: get5stats
+    state: present
+    login_host: '{{mysql.ansible_facts.docker_container.NetworkSettings.Networks["csgo-manager"].IPAddress}}'
+    login_password: '{{mysql_root_password}}'
+    login_user: 'root'
+
+- name: get5-mysqlstats MySQL user
+  mysql_user:
+    name: get5stats
+    password: '{{ get5.stats_password }}'
+    host: '%'
+    priv: 'get5stats.*:ALL'
+    login_host: '{{mysql.ansible_facts.docker_container.NetworkSettings.Networks["csgo-manager"].IPAddress}}'
+    login_password: '{{mysql_root_password}}'
+    login_user: 'root'
+
+- copy:
+    src: get5_stats_import.sql
+    dest: /home/steam/get5_stats_import.sql
+    mode: u=rwx,go=rx
+    owner: root
+    group: root
+
+- name: get5-mysqlstats schema
+  become: yes
+  shell:
+    cmd: 'docker run --network csgo-manager --rm mysql:5 mysql --host=database --user=root --password="{{ mysql_root_password }}" get5stats < /home/steam/get5_stats_import.sql'

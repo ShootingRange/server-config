@@ -23,8 +23,10 @@
 #  tags:
 #    - misc
 
-- name: Counter-Strike Global Offensive server
-  hosts: csgo
+- name: Install Counter-Strike Global Offensive
+  hosts:
+    - csgo
+    - csgo-relay
   become: yes
   tasks:
     - include_vars:
@@ -37,13 +39,28 @@
         file: vars/misc.yml
     - fail:
         msg: "Server doesn't have a instance configuration"
-      when: 'ansible_facts.nodename not in csgo["servers"]'
+      when: 'ansible_facts.nodename not in csgo["servers"] and ansible_facts.nodename not in csgo["relays"]'
     - include_role:
         name: steamcmd
       vars:
         steamcache: false
     - include_role:
+        name: csgo/common
+
+- name: Counter-Strike Global Offensive server
+  hosts: csgo
+  become: yes
+  tasks:
+    - include_vars:
+        file: vars/logging.yml
+        name: logging
+    - include_vars:
+        file: vars/csgo-instances.yml
         name: csgo
+    - include_vars:
+        file: vars/misc.yml
+    - include_role:
+        name: csgo/game
   tags:
     - csgo
 
@@ -51,6 +68,11 @@
   hosts: manager
   become: yes
   tasks:
+    - include_vars:
+        file: vars/misc.yml
+    - include_vars:
+        file: vars/get5.yml
+        name: get5
     - include_role:
         name: docker
     - include_role:
@@ -67,3 +89,24 @@
     - vars/misc.yml
   tags:
     - manager
+
+- name: CS:GO GOTV relay
+  hosts: csgo-relay
+  become: yes
+  tasks:
+    - include_vars:
+        file: vars/csgo-instances.yml
+        name: csgo
+    - include_vars:
+        file: vars/misc.yml
+    - fail:
+        msg: "Server doesn't have a instance configuration"
+      when: 'ansible_facts.nodename not in csgo["relays"]'
+    - include_role:
+        name: steamcmd
+      vars:
+        steamcache: false
+    - include_role:
+        name: csgo/common
+    - include_role:
+        name: csgo/relay

@@ -1,0 +1,10 @@
+---
+- name: Copy CS:GO server script
+  copy:
+    src: run-csgo.sh
+    dest: /home/steam/run-csgo.sh
+    owner: steam
+    group: steam
+    mode: ugo=rx
+
+- include: instance.yml

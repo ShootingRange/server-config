@@ -23,29 +23,3 @@
   when: csgostat.stat.exists == True
   become: yes
   become_user: steam
-
-- name: Copy tournament configs
-  copy:
-    force: no
-    src: confs/
-    dest: /home/steam/csgo/csgo/cfg/
-    owner: steam
-    group: steam
-
-- include: ebot.yml
-
-- include: get5.yml
-
-- name: Generate autoexec.cfg
-  template:
-    src: autoexec.cfg
-    dest: '/home/steam/csgo/csgo/cfg/autoexec.cfg'
-    owner: steam
-    group: steam
-
-- name: Copy CS:GO logging config
-  template:
-    src: logging.cfg
-    dest: '/home/steam/csgo/csgo/cfg/logging.cfg'
-    owner: steam
-    group: steam

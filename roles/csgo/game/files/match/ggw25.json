@@ -1,0 +1,37 @@
+
+{
+	"matchid": "example_match",
+	"num_maps": 3,
+	"players_per_team": 5,
+	"min_players_to_ready": 1,
+	"min_spectators_to_ready": 0,
+	"skip_veto": true,
+	"veto_first": "team1",
+	"side_type": "always_knife",
+
+	"spectators": {
+		"players":
+		[
+			"76561198044578622"
+		]
+	},
+
+	"maplist":
+	[
+		"de_inferno",
+		"de_train",
+		"de_mirage",
+		"de_nuke",
+		"de_overpass",
+		"de_dust2",
+		"de_vertigo"
+	],
+
+    "team1": {
+        "name": "Team CT"
+    },
+
+    "team2": {
+        "name": "Team T"
+    }
+}
