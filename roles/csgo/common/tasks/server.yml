@@ -1,10 +1,26 @@
 ---
+- name: Enable i386 architecture in dpkg
+  shell: 'dpkg --add-architecture i386'
+
+- name: Update package repository
+  apt:
+    update_cache: yes
+
 - name: Install CS:GO dependencies
   apt:
     name: '{{ item }}'
     state: present
   loop:
-    - 'libcurl3'
+    - 'libcurl3:i386'
+
+- name: Link libcurl.so
+  file:
+    state: link
+    src: "/usr/lib/i386-linux-gnu/libcurl.so.4"
+    dest: "/home/steam/csgo/bin/libcurl.so"
+    mode: u=rwx,go=rx
+    owner: steam
+    group: steam
 
 - name: Check if CS:GO is installed
   stat:
