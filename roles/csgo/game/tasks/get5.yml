@@ -95,12 +95,20 @@
     mode: u=rwx,go=rx
   when: csgo_manager == 'get5'
 
-- name: enable get5 apistats 
-  copy:
-    src: /home/steam/csgo/csgo/addons/sourcemod/plugins/disabled/get5_apistats.smx
+- name: Download PhlexPlexico get5_apistats
+  get_url:
+    url: "https://github.com/PhlexPlexico/get5-web/releases/download/1.0/get5_apistats.smx"
     dest: /home/steam/csgo/csgo/addons/sourcemod/plugins/get5_apistats.smx
-    remote_src: yes
-  when: csgo_manager == 'get5'
+    mode: u=rwx,go=rx
+    owner: steam
+    group: steam
+
+#- name: enable get5 apistats
+#  copy:
+#    src: /home/steam/csgo/csgo/addons/sourcemod/plugins/disabled/get5_apistats.smx
+#    dest: /home/steam/csgo/csgo/addons/sourcemod/plugins/get5_apistats.smx
+#    remote_src: yes
+#  when: csgo_manager == 'get5'
 
 - name: enable get5 mysqlstats
   copy:

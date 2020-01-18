@@ -1,0 +1,6 @@
+database: "mysql://get5:password@host/db"
+steam_api_key: "1234567890ABCDEF1234567890ABCDEF"
+secret_key: "secret"
+database_key: "1234567890ABCDEF" # Must be 16 characters
+database_password: "password"
+stats_password: "password"
