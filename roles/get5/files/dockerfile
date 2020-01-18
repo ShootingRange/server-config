@@ -2,9 +2,10 @@ FROM python:2-stretch
 
 RUN mkdir /get5
 WORKDIR /get5
-RUN wget "https://github.com/PhlexPlexico/get5-web/archive/1.0.zip"
-RUN unzip 1.0.zip
-WORKDIR get5-web-1.0
+RUN wget "https://github.com/jenrik/get5-web/archive/production.zip" -O get5.zip
+RUN unzip get5.zip
+RUN mv get5-web-production get5-web
+WORKDIR get5-web
 RUN pip install -r requirements.txt
 ADD entry.sh entry.sh
 RUN chmod a+rx entry.sh
