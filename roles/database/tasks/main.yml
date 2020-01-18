@@ -11,6 +11,11 @@
     env:
       MYSQL_ROOT_PASSWORD: '{{mysql_root_password}}'
     restart_policy: always
+    keep_volumes: yes
+    mounts:
+      - source: "database"
+        target: "/var/lib/mysql"
+        type: "volume"
   register: mysql
 
 - name: Ansible mysql library (python3)
