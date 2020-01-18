@@ -1,4 +1,12 @@
 ---
+- name: Create database storage
+  file:
+    path: /var/lib/database
+    mode: a=rwx
+    owner: root
+    group: root
+    state: directory
+
 - name: Database (mysql) cotainer
   docker_container:
     name: csgo-mysql
@@ -12,10 +20,8 @@
       MYSQL_ROOT_PASSWORD: '{{mysql_root_password}}'
     restart_policy: always
     keep_volumes: yes
-    mounts:
-      - source: "database"
-        target: "/var/lib/mysql"
-        type: "volume"
+    volumes:
+      - "/var/lib/database:/var/lib/mysql:rw"
   register: mysql
 
 - name: Ansible mysql library (python3)
