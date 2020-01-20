@@ -4,3 +4,4 @@ secret_key: "secret"
 database_key: "1234567890ABCDEF" # Must be 16 characters
 database_password: "password"
 stats_password: "password"
+stats_host: "192.168.0.100:3306"

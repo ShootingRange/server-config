@@ -137,7 +137,7 @@
   when: csgo_manager == 'get5'
 
 - name: Copy database config for get5 mysqlstats
-  copy:
+  template:
     src: databases.cfg
     dest: /home/steam/csgo/csgo/addons/sourcemod/configs/databases.cfg
     owner: steam

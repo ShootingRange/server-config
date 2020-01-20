@@ -12,6 +12,8 @@
     name: csgo-mysql
     image: mysql:5
     purge_networks: yes
+    published_ports:
+      - "0.0.0.0:3306:3306"
     networks:
       - name: csgo-manager
         aliases:
