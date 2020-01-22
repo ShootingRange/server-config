@@ -59,6 +59,9 @@
         name: csgo
     - include_vars:
         file: vars/misc.yml
+    - include_vars:
+        file: vars/get5.yml
+        name: get5
     - include_role:
         name: csgo/game
   tags:
