@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<service>
+  <short>CSGO-RCON</short>
+  <description>Counter Strike: Global Offensive - RCON port</description>
+  <port protocol="tcp" port="27000-27099"/>
+</service>

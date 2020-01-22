@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<service>
+  <short>CSGO</short>
+  <description>Counter Strike: Global Offensive - Game play port</description>
+  <port protocol="udp" port="27000-27099"/>
+</service>

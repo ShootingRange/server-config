@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<zone target="%%REJECT%%">
+  <short>ggw</short>
+
+  <description>
+    Config for use during event
+  </description>
+
+  <rule family="ipv4">
+    <service name="csgo"/>
+    <accept></accept>
+  </rule>
+  <rule family="ipv4">
+    <source ipset="crew"/>
+    <service name="csgo-rcon"/>
+    <accept></accept>
+  </rule>
+  <rule family="ipv4">
+    <source ipset="servers"/>
+    <service name="csgo-rcon"/>
+    <accept></accept>
+  </rule>
+  <rule family="ipv4">
+    <source ipset="crew"/>
+    <service name="csgo-gotv"/>
+    <accept></accept>
+  </rule>
+  <service name='ssh'/>
+
+  <rule family="ipv4">
+    <source ipset="ltn"/>
+    <service name="csgo"/>
+    <accept></accept>
+  </rule>
+  <rule family="ipv4">
+    <source ipset="ltn"/>
+    <service name="csgo-rcon"/>
+    <accept></accept>
+  </rule>
+  <rule family="ipv4">
+    <source ipset="ltn"/>
+    <service name="csgo-gotv"/>
+    <accept></accept>
+  </rule>
+</zone>

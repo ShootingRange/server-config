@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<service>
+  <short>CSGO-GOTV</short>
+  <description>Counter Strike: Global Offensive - GOTV port</description>
+  <port protocol="udp" port="27100-27199"/>
+</service>

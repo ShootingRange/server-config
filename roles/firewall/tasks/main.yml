@@ -1,0 +1,34 @@
+---
+- include_vars: networks.yml
+
+- name: Create ipsets
+  template:
+    src: ipsets/whitelist.xml
+    dest: '/etc/firewalld/ipsets/{{ name }}.xml'
+    mode: u=rwx,go=rx
+    root: root
+    group: root
+  loop: '{{ networks | dict2items(key_name="name", value_name="ips") }}'
+
+- name: Copy services
+  copy:
+    src: 'services/{{ item }}.xml'
+    dest: '/etc/firewalld/service/{{ item }}.xml'
+    mode: u=rwx,go=rx
+    root: root
+    group: root
+  loop:
+    - csgo
+    - csgo-rcon
+    - csgo-gotv
+
+- name: Copy zone
+  copy:
+    src: 'zones/ggw.xml'
+    dest: '/etc/firewalld/zones/ggw.xml'
+    mode: u=rwx,go=rx
+    root: root
+    group: root
+
+- name: Reload firewalld
+  shell: 'firewall-cmd --reload'
