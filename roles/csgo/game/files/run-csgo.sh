@@ -6,7 +6,7 @@ exec /home/steam/csgo/srcds_linux \
   -net_port_try 1 \
   -tickrate 128 \
   -ip 0.0.0.0 \
-  -port $SERVER_PORT \
+  -port "${SERVER_PORT}" \
   -usercon \
   -lan 0 \
   +sv_lan 0 \
@@ -17,9 +17,9 @@ exec /home/steam/csgo/srcds_linux \
   +rcon_password "${RCON_PASSWORD}" \
   +mapgroup mg_active \
   +map de_dust2 \
-  +exec "logging.cfg" \
-  +exec "gotv.cfg" \
-  +exec "instance_${1}.cfg" \
+  +exec "instance_${1}.cfg"
 
 
+#  +exec "logging.cfg" \
+#  +exec "gotv.cfg" \
 #  +sv_password "$PASSWORD" \
