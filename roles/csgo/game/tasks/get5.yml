@@ -10,12 +10,14 @@
   get_url:
     url: 'https://sm.alliedmods.net/smdrop/1.10/sourcemod-1.10.0-git6454-linux.tar.gz'
     dest: /home/steam/
+    checksum: sha256:0fc4b49576e529a81fe8958fdddc70767c047d96e1b72ea94354d9f253d76c38
   when: csgo_manager == 'get5'
 
 - name: Download metamod
   get_url:
     url: 'https://mms.alliedmods.net/mmsdrop/1.10/mmsource-1.10.7-git971-linux.tar.gz'
     dest: /home/steam/
+    checksum: sha256:5c70f851d7f1e60fde7632850d159972daa35b5d6703afa879520449020dcb85
   when: csgo_manager == 'get5'
 
 - name: Download steamworks
