@@ -25,6 +25,11 @@
     <service name="csgo-gotv"/>
     <accept></accept>
   </rule>
+  <rule family="ipv4">
+    <source ipset="crew"/>
+    <service name="get5-web"/>
+    <accept></accept>
+  </rule>
   <service name='ssh'/>
 
   <rule family="ipv4">

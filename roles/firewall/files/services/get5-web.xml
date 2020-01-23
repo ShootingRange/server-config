@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<service>
+  <short>GET5</short>
+  <description>get5 web interface</description>
+  <port protocol="tcp" port="5000"/>
+</service>
