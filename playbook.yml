@@ -64,6 +64,8 @@
         name: get5
     - include_role:
         name: csgo/game
+    - include_role:
+        name: demo-uploader
   tags:
     - csgo
 
