@@ -1,0 +1,72 @@
+---
+- name: Copy demo uploader serive
+  copy:
+    src: "{{ item }}"
+    dest: "/etc/systemd/system/{{ item }}"
+    owner: root
+    group: root
+    mode: u=rwx,go=rx
+  loop:
+    - "upload-demo.timer"
+    - "upload-demo.service"
+
+- name: Copy uploader script
+  copy:
+    src: "upload-demoes.sh"
+    dest: "/home/steam/upload-demoes.sh"
+    owner: root
+    group: root
+    mode: u=rwx,go=rx
+
+- name: Create config dir
+  file:
+    state: directory
+    path: /home/steam/.config
+    owner: steam
+    group: steam
+    mode: u=rwx,go=rx
+
+- name: Create rclone config dir
+  file:
+    state: directory
+    path: /home/steam/.config/rclone
+    owner: steam
+    group: steam
+    mode: u=rwx,go=rx
+
+- name: Copy rclone config
+  copy:
+    src: rclone.conf
+    dest: /home/steam/.config/rclone
+    owner: steam
+    group: steam
+    mode: u=rwx,go=rx
+
+- name: Download rclone
+  get_url:
+    url: "https://downloads.rclone.org/v1.50.2/rclone-v1.50.2-linux-amd64.zip"
+    dest: "/home/steam/rclone.zip"
+    checksum: "sha256:2112883164f1f341b246a275936e7c3019d68135002098d84637839dec9526c8"
+
+- name: Extract rclone
+  unarchive:
+    src: /home/steam/rclone.zip
+    dest: /home/steam
+    remote_src: yes
+
+- name: Link rclone
+  file:
+    state: link
+    src: /home/steam/rclone-v1.50.2-linux-amd64/rclone
+    dest: /home/steam/rclone
+    owner: steam
+    group: steam
+
+- name: Reload systemd
+  systemd:
+    daemon_reload: yes
+
+- name: Start timer
+  systemd:
+    name: upload-demo.timer
+    enabled: yes

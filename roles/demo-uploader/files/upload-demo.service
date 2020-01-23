@@ -1,0 +1,8 @@
+[Unit]
+Description=Upload CSGO demoes
+
+[Service]
+Type=oneshot
+ExecStart=/home/steam/upload-demoes.sh
+User=steam
+Group=steam
