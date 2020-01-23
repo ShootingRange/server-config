@@ -23,6 +23,15 @@
 #  tags:
 #    - misc
 
+- name: Install firewall
+  hosts:
+    - csgo
+    - manager
+  become: yes
+  tasks:
+    - include_role:
+        name: firewall
+
 - name: Install Counter-Strike Global Offensive
   hosts:
     - csgo
