@@ -1,10 +1,15 @@
 ---
 - include_vars: networks.yml
 
+- name: Install firewalld
+  apt:
+    name: firewalld
+    state: present
+
 - name: Create ipsets
   template:
     src: ipsets/whitelist.xml
-    dest: '/etc/firewalld/ipsets/{{ name }}.xml'
+    dest: '/etc/firewalld/ipsets/{{ item.name }}.xml'
     mode: u=rwx,go=rx
     owner: root
     group: root
@@ -13,7 +18,7 @@
 - name: Copy services
   copy:
     src: 'services/{{ item }}.xml'
-    dest: '/etc/firewalld/service/{{ item }}.xml'
+    dest: '/etc/firewalld/services/{{ item }}.xml'
     mode: u=rwx,go=rx
     owner: root
     group: root
