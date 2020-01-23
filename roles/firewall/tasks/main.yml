@@ -6,7 +6,7 @@
     src: ipsets/whitelist.xml
     dest: '/etc/firewalld/ipsets/{{ name }}.xml'
     mode: u=rwx,go=rx
-    root: root
+    owner: root
     group: root
   loop: '{{ networks | dict2items(key_name="name", value_name="ips") }}'
 
@@ -15,7 +15,7 @@
     src: 'services/{{ item }}.xml'
     dest: '/etc/firewalld/service/{{ item }}.xml'
     mode: u=rwx,go=rx
-    root: root
+    owner: root
     group: root
   loop:
     - csgo
@@ -27,7 +27,7 @@
     src: 'zones/ggw.xml'
     dest: '/etc/firewalld/zones/ggw.xml'
     mode: u=rwx,go=rx
-    root: root
+    owner: root
     group: root
 
 - name: Reload firewalld
