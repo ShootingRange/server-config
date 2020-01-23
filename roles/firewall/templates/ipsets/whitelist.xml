@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
   <ipset type="hash:net">
   <short>white-list</short>
-{% for ip in ips %}
+{% for ip in item.ips %}
   <entry>{{ ip }}</entry>
 {% endfor %}
 </ipset>
