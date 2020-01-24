@@ -37,29 +37,6 @@
   shell:
     cmd: "docker run --network csgo-manager --rm get5-web python manager.py db upgrade"
 
-- name: Download system2
-  get_url:
-    url: "https://github.com/dordnung/System2/releases/download/v3.2.1/system2.zip"
-    dest: "/home/steam/system2.zip"
-
-- name: Unpack system2
-  unarchive:
-    src: "/home/steam/system2.zip"
-    dest: "/home/steam/csgo/csgo/addons/sourcemod/"
-    remote_src: yes
-
-- name: Fix system2 permissions
-  file:
-    path: "/home/steam/csgo/csgo/addons/sourcemod/{{item}}"
-    mode: a+rx
-  with_items:
-    - "extensions/system2.ext.so"
-    - "scripting/system2_http.sp"
-    - "scripting/system2_test.sp"
-    - "scripting/include/system2.inc"
-    - "scripting/include/system2/legacy.inc"
-    - "scripting/include/system2/request.inc"
-
 - name: get5 web interface container
   docker_container:
     image: get5-web

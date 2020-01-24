@@ -112,6 +112,29 @@
 #    remote_src: yes
 #  when: csgo_manager == 'get5'
 
+- name: Download system2
+  get_url:
+    url: "https://github.com/dordnung/System2/releases/download/v3.2.1/system2.zip"
+    dest: "/home/steam/system2.zip"
+
+- name: Unpack system2
+  unarchive:
+    src: "/home/steam/system2.zip"
+    dest: "/home/steam/csgo/csgo/addons/sourcemod/"
+    remote_src: yes
+
+- name: Fix system2 permissions
+  file:
+    path: "/home/steam/csgo/csgo/addons/sourcemod/{{item}}"
+    mode: a+rx
+  with_items:
+    - "extensions/system2.ext.so"
+    - "scripting/system2_http.sp"
+    - "scripting/system2_test.sp"
+    - "scripting/include/system2.inc"
+    - "scripting/include/system2/legacy.inc"
+    - "scripting/include/system2/request.inc"
+
 - name: enable get5 mysqlstats
   copy:
     src: /home/steam/csgo/csgo/addons/sourcemod/plugins/disabled/get5_mysqlstats.smx
