@@ -31,6 +31,7 @@
     path: /home/steam/csgo/csgo/addons
     mode: u=rwx,go=rx
     recurse: yes
+  when: csgo_manager == 'get5'
 
 - file:
     path: /home/steam/csgo/csgo/cfg
@@ -104,6 +105,7 @@
     mode: u=rwx,go=rx
     owner: steam
     group: steam
+  when: csgo_manager == 'get5'
 
 #- name: enable get5 apistats
 #  copy:
@@ -116,17 +118,20 @@
   get_url:
     url: "https://github.com/dordnung/System2/releases/download/v3.2.1/system2.zip"
     dest: "/home/steam/system2.zip"
+  when: csgo_manager == 'get5'
 
 - name: Unpack system2
   unarchive:
     src: "/home/steam/system2.zip"
     dest: "/home/steam/csgo/csgo/addons/sourcemod/"
     remote_src: yes
+  when: csgo_manager == 'get5'
 
 - name: Fix system2 permissions
   file:
     path: "/home/steam/csgo/csgo/addons/sourcemod/{{item}}"
     mode: a+rx
+  when: csgo_manager == 'get5'
   with_items:
     - "extensions/system2.ext.so"
     - "scripting/system2_http.sp"
@@ -146,11 +151,13 @@
     path: /home/steam/csgo/csgo/addons
     mode: u=rwx,go=rx
     recurse: yes
+  when: csgo_manager == 'get5'
 
 - file:
     path: /home/steam/csgo/csgo/cfg
     mode: u=rwx,go=rx
     recurse: yes
+  when: csgo_manager == 'get5'
 
 - name: Set get5 config
   copy:
@@ -177,6 +184,7 @@
     owner: steam
     group: steam
     mode: u=rwx,go=rx
+  when: csgo_manager == 'get5'
 
 - name: Remove get5 - config
   file:
