@@ -9,6 +9,7 @@ exec /home/steam/csgo/srcds_linux \
   -port "${SERVER_PORT}" \
   -usercon \
   -lan 0 \
+  -maxplayers_override 12 \
   +sv_lan 0 \
   +sv_setsteamaccount "${GSLT}" \
   +tv_port "${GOTV_PORT}" \
