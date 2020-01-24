@@ -145,7 +145,13 @@
     src: /home/steam/csgo/csgo/addons/sourcemod/plugins/disabled/get5_mysqlstats.smx
     dest: /home/steam/csgo/csgo/addons/sourcemod/plugins/get5_mysqlstats.smx
     remote_src: yes
-  when: csgo_manager == 'get5'
+  when: "csgo_manager == 'get5' and csgo['servers'][ansible_facts.nodename].stats"
+
+- name: enable get5 mysqlstats
+  file:
+    path: /home/steam/csgo/csgo/addons/sourcemod/plugins/get5_mysqlstats.smx
+    state: absent
+  when: "csgo_manager == 'get5' and csgo['servers'][ansible_facts.nodename].stats == false"
 
 - file:
     path: /home/steam/csgo/csgo/addons
