@@ -9,6 +9,7 @@ ExecStart=/home/steam/run-csgo.sh %i
 WorkingDirectory=/home/steam/csgo
 User=steam
 Group=steam
+Restart=always
 
 [Install]
 WantedBy=multi-user.target
