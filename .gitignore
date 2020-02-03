@@ -4,3 +4,4 @@
 !/vars/*_example.yml
 /ansible.log
 /roles/demo-uploader/files/rclone.conf
+!hosts-example.yaml

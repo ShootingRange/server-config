@@ -1,0 +1,12 @@
+manager:
+  hosts:
+    192.168.0.100:
+csgo:
+  hosts:
+    192.168.0.100:
+#csgo-relay:
+#  hosts:
+#    192.168.0.100:
+all:
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
