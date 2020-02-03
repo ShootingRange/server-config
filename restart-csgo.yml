@@ -1,0 +1,30 @@
+---
+- name: Restart and stop CS:GO instances
+  hosts: csgo
+  become: yes
+  tasks:
+    - include_vars:
+        file: vars/logging.yml
+        name: logging
+    - include_vars:
+        file: vars/csgo-instances.yml
+        name: csgo
+    - include_vars:
+        file: vars/misc.yml
+    - include_vars:
+        file: vars/get5.yml
+        name: get5
+    - name: Restart CS:GO server instance
+      systemd:
+        name: 'csgo@{{ item.name }}.service'
+        state: restarted
+        enabled: yes
+      when: "item.active"
+      loop: '{{ csgo["servers"][ansible_facts.nodename].instances }}'
+    - name: Stop CS:GO server instance
+      systemd:
+        name: 'csgo@{{ item.name }}.service'
+        state: stopped
+        enabled: no
+      when: "item.active == false"
+      loop: '{{ csgo["servers"][ansible_facts.nodename].instances }}'
