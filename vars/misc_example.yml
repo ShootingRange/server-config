@@ -1,2 +1,7 @@
-csgo_manager: 'get5' # Either ebot or get5
+mysql_password: 'test'
+mysql_root_password: 'test'
+csgo_manager: 'get5'
+htlv:
+  ex: "example.com:1234"
+  http: "http://example.com:8080/"
 steam_api_key: '' # Used for get5 web interface

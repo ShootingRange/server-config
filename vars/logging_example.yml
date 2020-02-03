@@ -9,4 +9,4 @@ ts: [] # UDP logging, with checksum token (see token_secret)
 #    port: 1234
 http: [] # HTTP logging
 #  - "http://192.168.0.100:1234"
-token_secret: "hunter2" # token sent with log entries when using ex or ts
+token_secret: "hunter2" # token sent with log entries when using ex or ts. To disable setting token_secret comment out this line
