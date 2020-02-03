@@ -8,20 +8,52 @@ servers:
       - name: server-1-1
         gslt: '0123456789ABCDEF0123456789ABCDEF'
         port: 27015
+        hltv: false
+        type: pro
+        active: true
       - name: server-1-1
         gslt: '0123456789ABCDEF0123456789ABCDEF'
         port: 27016
+        hltv: false
+        type: pro
+        active: true
       - name: server-1-1
         gslt: '0123456789ABCDEF0123456789ABCDEF'
         port: 27017
+        hltv: false
+        type: pro
+        active: true
   server-hostname-2:
     instances:
       - name: server-2-1
         gslt: '0123456789ABCDEF0123456789ABCDEF'
         port: 27015
+        hltv: false
+        type: pro
+        active: true
       - name: server-2-2
         gslt: '0123456789ABCDEF0123456789ABCDEF'
         port: 27016
+        hltv: false
+        type: pro
+        active: true
       - name: server-2-3
         gslt: '0123456789ABCDEF0123456789ABCDEF'
         port: 27017
+        hltv: false
+        type: pro
+        active: true
+relays:
+  relay-hostname-1:
+    - name: 1
+      gslt: '0123456789ABCDEF012345678ABCDEF'
+      game_server: '192.168.0.100:27015'
+      active: true
+      port: 27015
+      gotv: 27115
+    - name: 2
+      gslt: '0123456789ABCDEF012345678ABCDEF'
+      game_server: '192.168.0.100:27016'
+      active: true
+      port: 27016
+      gotv: 27116
