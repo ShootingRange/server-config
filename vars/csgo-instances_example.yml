@@ -4,22 +4,26 @@ gotv_password: 'password'
 gotv_relay_password: 'password'
 servers:
   server-hostname-1:
+    stats: false
     instances:
       - name: server-1-1
         gslt: '0123456789ABCDEF0123456789ABCDEF'
         port: 27015
+        gotv: 27115
         hltv: false
         type: pro
         active: true
       - name: server-1-1
         gslt: '0123456789ABCDEF0123456789ABCDEF'
         port: 27016
+        gotv: 27116
         hltv: false
         type: pro
         active: true
       - name: server-1-1
         gslt: '0123456789ABCDEF0123456789ABCDEF'
         port: 27017
+        gotv: 27117
         hltv: false
         type: pro
         active: true
@@ -28,18 +32,21 @@ servers:
       - name: server-2-1
         gslt: '0123456789ABCDEF0123456789ABCDEF'
         port: 27015
+        gotv: 27115
         hltv: false
         type: pro
         active: true
       - name: server-2-2
         gslt: '0123456789ABCDEF0123456789ABCDEF'
         port: 27016
+        gotv: 27116
         hltv: false
         type: pro
         active: true
       - name: server-2-3
         gslt: '0123456789ABCDEF0123456789ABCDEF'
         port: 27017
+        gotv: 27117
         hltv: false
         type: pro
         active: true
