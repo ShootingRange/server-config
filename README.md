@@ -4,6 +4,11 @@ This repository contains an [Ansible](https://www.ansible.com/) playbook for tha
 
 The playbook have been tested on Ubuntu 18.04.
 
+Clone the repository using the following command to get all files:
+```
+git clone --recurse-submodules https://github.com/LanTeamNord/server-config.git
+```
+
 ## Services
 
 The following service will be configure by the playbook
