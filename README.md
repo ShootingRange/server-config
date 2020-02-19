@@ -2,7 +2,7 @@
 
 This repository contains an [Ansible](https://www.ansible.com/) playbook for that setup and configure Counter Strike: Global Offensive servers and other related services used during the Geeks Gone Wild LANs.
 
-The playbook have been tested on Ubuntu 18.04.
+The playbook have been tested on Ubuntu 18.04 with Ansible 2.9.4.
 
 Clone the repository using the following command to get all files:
 ```
